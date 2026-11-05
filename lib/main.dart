@@ -1,121 +1,254 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const MainScreen());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MainScreen extends StatelessWidget {
+  const MainScreen({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: .fromSeed(seedColor: Colors.deepPurple),
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        backgroundColor: const Color(0xFFFFF8EF),
+        appBar: AppBar(
+          title: const Text('Rasa Nusantara'),
+          backgroundColor: const Color(0xFF8D493A),
+          foregroundColor: Colors.white,
+          centerTitle: false,
+        ),
+        body: SingleChildScrollView(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'KULINER KHAS',
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: Color(0xFFB56A42),
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 2,
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        Text(
+                          'Pempek Candy',
+                          style: TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF65372C),
+                          ),
+                        ),
+                        SizedBox(height: 8),
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.place,
+                              color: Color(0xFFB56A42),
+                              size: 18,
+                            ),
+                            SizedBox(width: 4),
+                            Expanded(
+                              child: Text(
+                                'Palembang, Sumatera Selatan',
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  color: Colors.black54,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: Image.network(
+                      'https://images.unsplash.com/photo-1555939594-58d7cb561ad1',
+                      width: 125,
+                      height: 150,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ],
+              ),
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+              const SizedBox(height: 24),
 
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: const Color(0xFFF1E2D0),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: const Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Cerita di Balik Rasa',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF65372C),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Text(
+                      'Pempek merupakan makanan khas Palembang '
+                      'yang dibuat dari ikan dan tepung sagu. '
+                      'Hidangan ini biasanya disajikan bersama '
+                      'kuah cuko bercita rasa asam, manis, dan pedas. '
+                      'Rasanya menjadikan pempek salah satu '
+                      'kuliner yang banyak dicari oleh pengunjung.',
+                      textAlign: TextAlign.justify,
+                      style: TextStyle(
+                        fontSize: 14,
+                        height: 1.6,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
 
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
+              const SizedBox(height: 24),
 
-  final String title;
+              const Text(
+                'Sebelum Berkunjung',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF65372C),
+                ),
+              ),
 
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
+              const SizedBox(height: 12),
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+              Row(
+                children: [
+                  Expanded(
+                    child: infoCard(
+                      Icons.thumb_up,
+                      'Favorit',
+                      'Pempek',
+                      const Color(0xFFB56A42),
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: infoCard(
+                      Icons.restaurant,
+                      'Menu',
+                      'Tradisional',
+                      const Color(0xFF56806A),
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: infoCard(
+                      Icons.shopping_bag,
+                      'Pilihan',
+                      'Bawa Pulang',
+                      const Color(0xFF557A9C),
+                    ),
+                  ),
+                ],
+              ),
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+              const SizedBox(height: 24),
 
-  @override
-  Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: .center,
-          children: [
-            const Text('You have pushed the button this many times:'),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+              const Text(
+                'Nikmati Kuliner Lokal',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF65372C),
+                ),
+              ),
+
+              const SizedBox(height: 8),
+
+              const Text(
+                'Kenali cita rasa khas daerah melalui '
+                'hidangan yang menjadi kebanggaan masyarakat.',
+                style: TextStyle(
+                  fontSize: 14,
+                  height: 1.5,
+                  color: Colors.black54,
+                ),
+              ),
+
+              const SizedBox(height: 16),
+
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton.icon(
+                  onPressed: () {},
+                  icon: const Icon(Icons.restaurant_menu),
+                  label: const Text('Lihat Kuliner'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF8D493A),
+                    foregroundColor: Colors.white,
+                    padding: const EdgeInsets.all(14),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+    );
+  }
+
+  Widget infoCard(
+    IconData icon,
+    String title,
+    String value,
+    Color color,
+  ) {
+    return Container(
+      padding: const EdgeInsets.symmetric(
+        vertical: 16,
+        horizontal: 5,
+      ),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Column(
+        children: [
+          Icon(icon, color: color, size: 27),
+          const SizedBox(height: 10),
+          Text(
+            title,
+            style: const TextStyle(
+              fontSize: 12,
+              color: Colors.black54,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 6),
+          Text(
+            value,
+            style: const TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.bold,
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ],
       ),
     );
   }
